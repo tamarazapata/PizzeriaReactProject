@@ -1,0 +1,13 @@
+header {
+    background-image: url('../../assets/Header.jpg'); /* Ruta relativa hacia la imagen */
+    background-size: cover; /* Asegura que la imagen cubra todo el área del header */
+    background-position: center; /* Centra la imagen de fondo */
+    height: 300px; /* Define una altura para el header */
+    display: flex; /* Utiliza Flexbox para centrar el contenido */
+    align-items: center; /* Alinea el contenido verticalmente */
+    justify-content: center; /* Alinea el contenido horizontalmente */
+    color: white; /* Color de texto para contrastar con la imagen de fondo */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para que el texto sea más legible */
+    text-align: center;
+}
+
