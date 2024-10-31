@@ -8,9 +8,9 @@ const Home = () => {
     return (
         <div className="home">
             <div className="pizzas-container">
-                {pizzas.map((pizza, index) => (
+                {pizzas.map((pizza, id) => (
                     <CardPizza
-                        key={index}
+                        key={id}
                         name={pizza.name}
                         price={pizza.price}
                         ingredients={pizza.ingredients}

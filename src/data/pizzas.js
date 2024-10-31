@@ -1,38 +1,83 @@
 export const pizzas = [
     {
+        id: 1,
         name: "Napolitana",
         price: 5950,
         ingredients: ["mozzarella", "tomates", "jamón", "orégano"],
         img: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c",
     },
-    {
+    {   id: 2,
         name: "Española",
         price: 7550,
         ingredients: ["mozzarella", "gorgonzola", "parmesano", "provolone"],
         img: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2-a1c6-8c57bc388fab",
     },
-    {
+    {   id: 3,
         name: "Pepperoni",
         price: 8900,
         ingredients: ["mozzarella", "pepperoni", "orégano"],
         img: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3",
     },
-    {
+    {   id: 4,
         name: "Vegetariana",
         price: 7500,
         ingredients: ["mozzarella", "tomates", "albahaca", "orégano"],
         img: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c",
     },
-    {
+    {   id: 5,
         name: "Cuatro quesos",
         price: 7950,
         ingredients: ["mozzarella", "azul", "parmesano", "reggianato"],
         img: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2-a1c6-8c57bc388fab",
     },
-    {
+    {   id: 6,
         name: "BBQ",
         price: 8000,
         ingredients: ["mozzarella", "pepperoni", "orégano", "salsa bbq"],
         img: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3",
     }
 ]
+
+// export const productos = [
+//     {
+//       id: "1",
+//       nombre: "iPhone 14 Pro Max",
+//       precio: 100,
+//       sku: "1234567890",
+//       stock: 100,
+//       disponibilidad: "En stock",
+//     },
+//     {
+//       id: "2",
+//       nombre: "Samsung Galaxy S23 Ultra",
+//       precio: 2000,
+//       sku: "9876543210",
+//       stock: 50,
+//       disponibilidad: "Poco stock",
+//     },
+//     {
+//       id: "3",
+//       nombre: "MacBook Pro M2 Pro",
+//       precio: 3000,
+//       sku: "0987654321",
+//       stock: 20,
+//       disponibilidad: "Agotado",
+//     },
+//     {
+//       id: "4",
+//       nombre: "Asus ROG Strix G15",
+//       precio: 5000,
+//       sku: "1098765432",
+//       stock: 70,
+//       disponibilidad: "En stock",
+//     },
+//     {
+//       id: "5",
+//       nombre: "Xbox Series X",
+//       precio: 700,
+//       sku: "2109876543",
+//       stock: 150,
+//       disponibilidad: "En stock",
+//     },
+//   ];
+  
