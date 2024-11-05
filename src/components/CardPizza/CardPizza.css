@@ -14,29 +14,32 @@
 }
 
 .price-text {
+    font-size: 1.75rem; 
     font-weight: bold;
-    font-size: x-large;
-    color: #1f0276;
 }
 
-.desc-text {
-    font-weight: lighter;
-    font-size: medium;
-    font-style: italic;
-    color: grey;
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-.button-group {
+.card-body {
     display: flex;
-    justify-content: space-between;
-    gap: 2rem; 
-    margin-top: 10px;
+    flex-direction: column;
 }
 
-.button {
-    flex: 1; 
+.card-text {
+    font-size: 0.9rem;
 }
 
-.text-center{
-    text-transform: uppercase;
+.btn-add-cart {
+    background-color: #e31837;
+    border: none;
+    color: white; /* Ensures the text is readable */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+    font-size: large;
+    font-weight: 600;
+}
+.btn-add-cart:hover {
+    background-color: #c1122f; /* Darker shade for hover effect */
 }
