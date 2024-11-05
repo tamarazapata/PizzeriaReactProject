@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import './CardPizza.css';
 
-const Cards = ({ name, price, ingredients, img }) => {
+const Cards = ({ name, price, ingredients, img, desc }) => {
     return (
         <Card className="pizza-card shadow-sm" >
             <Card.Img  variant="top" src={img} alt={name} className="pizza-image"  />
@@ -17,6 +17,7 @@ const Cards = ({ name, price, ingredients, img }) => {
                     ))}
                 </ul>
                 <p className="price-text">Precio: ${price}</p>
+                <span className="desc-text">Descripción: {desc}</span>
             </Card.Text>
             <div className="button-group">
                 <Button variant="light" className="button">Ver más</Button>

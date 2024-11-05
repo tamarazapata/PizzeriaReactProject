@@ -4,7 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 // import Home from  "./pages/Home/Home";
 import Header  from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Cart from "./pages/Cart/Cart";
+import Pizza from "./components/Pizza/Pizza"
+// import Cart from "./pages/Cart/Cart";
 // import LoginForm from "./pages/LoginPage/LoginPage"
 // import RegisterForm from "./pages/Register/Register"
 
@@ -19,7 +20,8 @@ function App() {
       {/* <Home /> */}
       {/* <LoginForm /> */}
       {/* <RegisterForm /> */}
-      <Cart />
+      {/* <Cart /> */}
+      <Pizza />
       <Footer />
       
     </>

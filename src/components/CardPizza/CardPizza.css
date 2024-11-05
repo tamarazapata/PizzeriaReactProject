@@ -19,6 +19,13 @@
     color: #1f0276;
 }
 
+.desc-text {
+    font-weight: lighter;
+    font-size: medium;
+    font-style: italic;
+    color: grey;
+}
+
 .button-group {
     display: flex;
     justify-content: space-between;
@@ -28,4 +35,8 @@
 
 .button {
     flex: 1; 
+}
+
+.text-center{
+    text-transform: uppercase;
 }
