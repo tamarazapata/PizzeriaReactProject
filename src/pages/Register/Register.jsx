@@ -63,11 +63,11 @@ const RegisterForm = () => {
 
 
     return (
-        <div className="bg-dark text-light vh-100 d-flex align-items-center justify-content-between">
+        <div className="bg-dark text-light d-flex align-items-center justify-content-between">
             <div className="container">
                 <div className="row justify-content-center">
                     <div className = "col-md-6">
-                        <h2 className="text-center mb-4">Registro</h2>
+                        <h2 className="text-center m-4">Registro</h2>
                         {error}
                         <form onSubmit={handleSubmit} className="p-4 border rounded bg-light text-dark">
                         <div className="mb-3">

@@ -1,0 +1,13 @@
+.not-found {
+    text-align: center;
+    padding: 20px;
+}
+
+.img-pizza-extra{
+    width: 15rem;
+
+}
+a {
+    color: #ff6347; /* Tomate, como en una pizza */
+    text-decoration: underline;
+}
