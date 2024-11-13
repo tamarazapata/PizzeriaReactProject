@@ -5,11 +5,12 @@ import NavBarMenu from "./components/Navbar/Navbar";
 import Home from  "./pages/Home/Home";
 import Header  from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-// import Pizza from "./components/Pizza/Pizza"
+import Pizza from "./components/Pizza/Pizza"
 import Cart from "./pages/Cart/Cart";
 import LoginForm from "./pages/LoginPage/LoginPage"
 import RegisterForm from "./pages/Register/Register"
 import NotFound from "./components/NotFound/NotFound";
+import Profile from "./pages/Profile/Profile";
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
+          <Route path = "/pizza/p001" element={<Pizza />} />
+          <Route path = "/profile" element={<Profile />} />
 
       </Routes>
       {/* <Home /> */}

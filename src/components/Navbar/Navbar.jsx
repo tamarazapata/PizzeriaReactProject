@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const NavBarMenu = () => {
     const total = 80000;
-    const token = false;
+    const token = true;
 
     return (
         <Navbar expand="lg" bg="dark" variant="dark" className="bg-dark">
@@ -20,7 +20,7 @@ const NavBarMenu = () => {
                     {token ? (
                         <>
                             <Link to="/profile" className="text-light mt-2 pe-2 text-decoration-none">🔓 Profile</Link>
-                            <Link to="/logout" className="text-light mt-2 pe-2 text-decoration-none">🔒 Logout</Link>
+                            {/* <Link to="/logout" className="text-light mt-2 pe-2 text-decoration-none">🔒 Logout</Link> */}
                         </>
                     ) : (
                         <>
