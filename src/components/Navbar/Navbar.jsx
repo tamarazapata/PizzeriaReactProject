@@ -2,11 +2,15 @@ import './Navbar.css';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useContext } from 'react';
 import { Link } from "react-router-dom";
+import { CartContext } from '../../context/CartContext';
 
 const NavBarMenu = () => {
-    const total = 80000;
+    // const total = 80000;
     const token = true;
+    const { getTotal } = useContext(CartContext); 
+    const total = getTotal();
 
     return (
         <Navbar expand="lg" bg="dark" variant="dark" className="bg-dark">

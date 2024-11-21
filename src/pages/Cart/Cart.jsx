@@ -1,67 +1,70 @@
-import { useState } from "react";
-import { pizzas } from "../../data/pizzas"; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
+import '../Cart/Cart.css'; 
 
+const Cart = () => {
+    const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
+    const navigate = useNavigate();
 
+    const handleRemove = (pizzaId) => {
+        removeFromCart(pizzaId);
+    };
 
-function Cart(){
-    const [pizzaList, setPizzaList] = useState(pizzas.map(pizza => ({ ...pizza, quantity: 1 })));
-    
-    const handleQuantityChange = (id, delta) => {
-        setPizzaList(prevPizzaList => prevPizzaList.map(pizza => {
-            if (pizza.id === id) {
-                const newQuantity = pizza.quantity + delta;
-                return {
-                    ...pizza,
-                    quantity: newQuantity < 0 ? 0 : newQuantity 
-                };
+    const handleQuantityChange = (pizzaId, delta) => {
+        const pizza = cart.find((item) => item.id === pizzaId);
+        if (pizza) {
+            const newQuantity = pizza.quantity + delta;
+            if (newQuantity <= 0) {
+            handleRemove(pizzaId);
+            } else {
+            updateQuantity(pizzaId, newQuantity);
             }
-            return pizza;
-        }));
+        }
     };
 
-    const total = pizzaList.reduce((accumulate, pizza) => accumulate + (pizza.price * pizza.quantity), 0);
-    
-    const handleRemovePizza = (id) => {
-        setPizzaList(prevPizzaList => prevPizzaList.filter(pizza => pizza.id !== id));
-    };
-    
-    return(
-        <div className="container mt-5">
-            <h1 className="mb-4">Detalle del pedido</h1>
-            <ul className="list-group">
-                {pizzaList.map((pizza =>(
+    const total = cart.reduce((accumulate, item) => accumulate + item.price * item.quantity, 0);
 
-                    <li key={pizza.id} className="list-group-item d-flex align-items-center justify-content-between mb-3">
+    return (
+    <div className="container mt-5 cart-container">
+        <h1 className="mb-4 text-center">Detalle del pedido</h1>
+        {cart.length === 0 ? (
+            <h3 className="text-center">Tu carrito está vacío</h3>
+            ) : (
+            <>
+            <ul className="list-group mb-4">
+                {cart.map((item) => (
+                    <li key={item.id} className="list-group-item cart-item">
                         <div className="d-flex align-items-center">
-                            <img src={pizza.img} alt={pizza.name} className="img-thumbnail" style={{ width: '100px', height: '80px', marginRight: '15px' }} />
+                            <img src={item.img} alt={item.name} className="img-thumbnail cart-img"/>
                             <div>
-                                <strong style={{ fontSize: '1.6rem' }} >{pizza.name}</strong>  <span style={{ fontSize: '1.4rem' }}> - Precio Unitario: ${pizza.price}</span>
+                                <strong className="cart-item-name">{item.name}</strong>{}
+                                <p className="cart-item-price">Precio Unitario: ${item.price}</p>
+                                <p className="cart-item-subtotal">   Subtotal: ${(item.price * item.quantity).toLocaleString()} </p>
                             </div>
                         </div>
                         <div className="d-flex align-items-center">
-                            {pizza.quantity === 0 && (
-                                <button onClick={() => handleRemovePizza(pizza.id)} className="btn btn-outline-danger me-2">
-                                    <i className="bi bi-trash"></i>
-                                </button>
-                            )}
-                            <button onClick={() => handleQuantityChange(pizza.id, - 1)} className="btn btn-secondary btn-dark me-2">-</button>
-                            <span style={{ fontSize: '1.4rem' }}>{pizza.quantity}</span>
-                            <button onClick={() => handleQuantityChange(pizza.id, + 1)} className="btn btn-secondary btn-dark ms-2">+</button>                            
+                            <button onClick={() => handleQuantityChange(item.id, -1)} className="btn btn-secondary btn-dark me-2"> - </button>
+                            <span className="cart-item-quantity">{item.quantity}</span>
+                            <button onClick={() => handleQuantityChange(item.id, 1)} className="btn btn-secondary btn-dark ms-2"> + </button>
+                            <button onClick={() => handleRemove(item.id)} className="btn btn-outline-danger ms-2"> <i className="bi bi-trash"></i></button>
                         </div>
                     </li>
-                )))
-                }
+                ))}
             </ul>
-            <div className="mb-4">
-                <h2>Total:${total.toLocaleString()} </h2>
+            <div className="text-center">
+                <h2 className="cart-total">Total: ${total.toLocaleString()}</h2>
             </div>
-        </div>
+            <div className="d-flex justify-content-between button-container">
+                        <button onClick={() => navigate('/')} className="btn btn-dark btn-lg"> Seguir Comprando </button>
+                        <button className="btn btn-success btn-lg" >Ir a Pagar </button>
+            </div>
+            </>
+        )}
+    </div>
     );
-}
-
+};
 
 export default Cart;
-
-    

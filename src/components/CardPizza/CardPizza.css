@@ -1,6 +1,6 @@
 .pizza-card {
     transition: transform 0.3s, box-shadow 0.3s;
-    width: auto;
+    width:auto;
 }
 
 .pizza-card:hover {
@@ -9,12 +9,12 @@
 }
 
 .pizza-image {
-    height: 200px;
+    height: 150px;
     object-fit: cover;
 }
 
 .price-text {
-    font-size: 1.75rem; 
+    font-size: 1.5rem; 
     font-weight: bold;
 }
 
@@ -23,14 +23,20 @@
     font-weight: bold;
 }
 
+
 .card-body {
     display: flex;
     flex-direction: column;
 }
 
 .card-text {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
+
+.ingredients-list p{
+    font-size: large;
+}
+
 
 .btn-add-cart {
     background-color: #e31837;
