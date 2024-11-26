@@ -2,16 +2,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { UserContext } from "../../context/UserContext";
 import { useNavigate } from 'react-router-dom';
 import '../Cart/Cart.css'; 
 
 const Cart = () => {
     const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
+    const { token } = useContext(UserContext);
     const navigate = useNavigate();
-
     const handleRemove = (pizzaId) => {
         removeFromCart(pizzaId);
     };
+
+    const setButtonClass = (token) => 
+        token 
+            ? "btn btn-success btn-lg text-white mt-2 pe-2" 
+            : "hide-button text-white mt-2 pe-2 display-none";
 
     const handleQuantityChange = (pizzaId, delta) => {
         const pizza = cart.find((item) => item.id === pizzaId);
@@ -59,7 +65,7 @@ const Cart = () => {
             </div>
             <div className="d-flex justify-content-between button-container">
                         <button onClick={() => navigate('/')} className="btn btn-dark btn-lg"> Seguir Comprando </button>
-                        <button className="btn btn-success btn-lg" >Ir a Pagar </button>
+                        <button className={setButtonClass(token)}>Ir a Pagar</button>
             </div>
             </>
         )}

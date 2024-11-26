@@ -12,31 +12,30 @@ import RegisterForm from "./pages/Register/Register"
 import NotFound from "./components/NotFound/NotFound";
 import Profile from "./pages/Profile/Profile";
 import { CartProvider } from "./context/CartContext";
-// import { useContext } from "react";
+import UserProvider from "./context/UserContext";
 
 
 function App() {
   const location = useLocation();
   return (
-    <>
-    <CartProvider>
-        <NavBarMenu />
-        {location.pathname !== "/cart" && <Header />}
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<RegisterForm />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path = "/pizza/p001" element={<Pizza />} />
-            <Route path = "/profile" element={<Profile />} />
-        </Routes>
-        <Footer />
-    </CartProvider>
+    <UserProvider>
+      <CartProvider>
+          <NavBarMenu />
+          {location.pathname !== "/cart" && <Header />}
+          <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<RegisterForm />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path = "/pizza/p001" element={<Pizza />} />
+              <Route path = "/profile" element={<Profile />} />
+          </Routes>
+          <Footer />
+      </CartProvider>
+    </UserProvider>
 
 
-      
-    </>
   );
 }
 

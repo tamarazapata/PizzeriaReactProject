@@ -5,13 +5,12 @@ import Navbar from "react-bootstrap/Navbar";
 import { useContext } from 'react';
 import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext';
+import { UserContext } from "../../context/UserContext";
 
 const NavBarMenu = () => {
-    // const total = 80000;
-    const token = true;
+    const { token, logout } = useContext(UserContext);
     const { getTotal } = useContext(CartContext); 
     const total = getTotal();
-
     return (
         <Navbar expand="lg" bg="dark" variant="dark" className="bg-dark">
         <Container>
@@ -19,11 +18,11 @@ const NavBarMenu = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Link to="/" className="text-light mt-2 pe-2 text-decoration-none"> 🍕 Home</Link>
-                    
+                    <Link to="/" className="text-light mt-2 pe-2 text-decoration-none">🍕 Home</Link>
                     {token ? (
                         <>
                             <Link to="/profile" className="text-light mt-2 pe-2 text-decoration-none">🔓 Profile</Link>
+                            <button  onClick={logout}  className="text-light mt-2 pe-2 text-decoration-none bg-dark border-0">🔒 Logout</button>
                             {/* <Link to="/logout" className="text-light mt-2 pe-2 text-decoration-none">🔒 Logout</Link> */}
                         </>
                     ) : (
