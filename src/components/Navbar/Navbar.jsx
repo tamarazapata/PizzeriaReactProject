@@ -12,7 +12,7 @@ const NavBarMenu = () => {
     const { getTotal } = useContext(CartContext); 
     const total = getTotal();
     return (
-        <Navbar expand="lg" bg="dark" variant="dark" className="bg-dark">
+        <Navbar expand="lg" bg="dark" variant="dark" className="navbar-custom">
         <Container>
             <Navbar.Brand href="#home"></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -23,7 +23,7 @@ const NavBarMenu = () => {
                         <>
                             <Link to="/profile" className="text-light mt-2 pe-2 text-decoration-none">🔓 Profile</Link>
                             <button  onClick={logout}  className="text-light mt-2 pe-2 text-decoration-none bg-dark border-0">🔒 Logout</button>
-                            {/* <Link to="/logout" className="text-light mt-2 pe-2 text-decoration-none">🔒 Logout</Link> */}
+                            
                         </>
                     ) : (
                         <>

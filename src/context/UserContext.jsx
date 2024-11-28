@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-    const [token, setToken] = useState({ state: true });
+    const [token, setToken] = useState({ state: false });
     const logout = () => {
-        setToken(false); // Set token to false when logging out
+        setToken(false); 
     };
     return (
         <UserContext.Provider value={{ token, setToken , logout}}>
