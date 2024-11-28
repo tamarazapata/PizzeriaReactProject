@@ -2,10 +2,12 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router-dom";
 import './CardPizza.css';
 
 const Cards = ({pizza,addToCart}) => {
     const { id, name, price, ingredients, img, desc } = pizza;
+    const navigate = useNavigate();
     return (
         <Card className="pizza-card card shadow-sm h-100" >
             <Card.Img  variant="top" src={img} alt={name} className="pizza-image"  />
@@ -21,7 +23,7 @@ const Cards = ({pizza,addToCart}) => {
                     <span className="text-muted card-text">{desc}</span>
                 </Card.Text>
                 <div className="mt-auto d-flex justify-content-between">
-                    <Button className="btn btn-secondary">Ver más</Button>
+                    <Button variant="primary" onClick={() => {navigate(`/pizza/${id}`)}} className="btn btn-secondary">Ver más</Button>
                     {/* <Button className="btn btn-add-cart">Añadir al carrito</Button> */}
                     <Button className="btn btn-add-cart" onClick={() => addToCart(id)}>Añadir al carrito</Button>
                 </div>

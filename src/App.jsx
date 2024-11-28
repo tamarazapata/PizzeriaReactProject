@@ -28,7 +28,7 @@ function App() {
               <Route path="/login" element={<LoginForm />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="*" element={<NotFound />} />
-              <Route path = "/pizza/p001" element={<Pizza />} />
+              <Route path = "/pizza/:id" element={<Pizza />} />
               <Route path = "/profile" element={<Profile />} />
           </Routes>
           <Footer />
