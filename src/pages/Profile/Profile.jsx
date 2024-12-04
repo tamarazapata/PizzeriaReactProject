@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Profile = ( ) => {
-    const { logout } = useContext(UserContext); 
+    const { user, logout } = useContext(UserContext); 
     const navigate = useNavigate();
-    const email = "user@example.com"
+    // const email = "user@example.com"
 
     const handleLogout = () => {
         logout(); 
@@ -22,8 +22,8 @@ const Profile = ( ) => {
                 className="rounded-circle mb-3" 
                 style={{ width: '100px', height: '100px' }} 
             />
-            <h2 className="text-center mb-3">{email}</h2>
-            <button className="btn btn-primary" onClick={handleLogout}> Sign Out</button>
+            <h2 className="text-center mb-3">{user || "No autenticado"}</h2>
+            <button className="btn btn-primary" onClick={handleLogout}>Cerrar sesión</button>
         </div>
     );
 };

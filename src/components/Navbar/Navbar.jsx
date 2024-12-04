@@ -11,6 +11,9 @@ const NavBarMenu = () => {
     const { token, logout } = useContext(UserContext);
     const { getTotal } = useContext(CartContext); 
     const total = getTotal();
+    const handleLogout = () => {
+        logout();
+    };
     return (
         <Navbar expand="lg" bg="dark" variant="dark" className="navbar-custom">
         <Container>
@@ -22,7 +25,7 @@ const NavBarMenu = () => {
                     {token ? (
                         <>
                             <Link to="/profile" className="text-light mt-2 pe-2 text-decoration-none">🔓 Profile</Link>
-                            <button  onClick={logout}  className="text-light mt-2 pe-2 text-decoration-none bg-dark border-0">🔒 Logout</button>
+                            <button  onClick={handleLogout}  className="text-light mt-2 pe-2 text-decoration-none bg-dark border-0">🔒 Logout</button>
                             
                         </>
                     ) : (

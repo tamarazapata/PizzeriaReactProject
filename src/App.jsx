@@ -11,13 +11,14 @@ import RegisterForm from "./pages/Register/Register"
 import NotFound from "./components/NotFound/NotFound";
 import Profile from "./pages/Profile/Profile";
 import { CartProvider } from "./context/CartContext";
-import UserProvider , { UserContext } from "./context/UserContext";
+import UserProvider ,  {UserContext}  from "./context/UserContext";
 import { useContext } from "react";
+import PropTypes from 'prop-types';
 
 
 function App() {
   const location = useLocation();
-  const { token } = useContext(UserContext);
+  // const { token } = useContext(UserContext);
   return (
     <UserProvider>
       <CartProvider>
@@ -35,7 +36,8 @@ function App() {
               {/* Si el token es false, redirige a "/login".
               Además, si el token es true, los usuarios no deberían poder acceder a la página de
               login y register (los puedes redirigir al home) */}
-              <Route path="/profile" element={token && token.state ? <Profile /> :  <Navigate to="/login" />}/>
+              {/* <Route path="/profile" element={token && token.state ? <Profile /> :  <Navigate to="/login" />}/> */}
+              <Route path="/profile" element={<PrivateRoute component={<Profile />} />} />
 
           </Routes> 
           <Footer />
@@ -45,5 +47,13 @@ function App() {
 
   );
 }
+
+function PrivateRoute({ children  }) {
+  const { token } = useContext(UserContext);
+  return token ? children  : <Navigate to="/login" />;
+}
+PrivateRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default App;
