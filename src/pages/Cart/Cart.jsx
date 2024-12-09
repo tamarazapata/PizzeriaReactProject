@@ -5,6 +5,8 @@ import { CartContext } from '../../context/CartContext';
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from 'react-router-dom';
 import '../Cart/Cart.css'; 
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Cart = () => {
     const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
@@ -12,12 +14,64 @@ const Cart = () => {
     const navigate = useNavigate();
     const handleRemove = (pizzaId) => {
         removeFromCart(pizzaId);
+        Swal.fire({
+            icon: 'success',
+            title: 'Tu pizza fue removida',
+            text: 'La pizza fue eliminada del carrito de forma exitosa',
+            confirmButtonText: 'OK',
+        });
     };
 
-    const setButtonClass = (token) => 
-        token 
-            ? "btn btn-success btn-lg text-white mt-2 pe-2" 
-            : "hide-button text-white mt-2 pe-2 display-none";
+    // const setButtonClass = (token) => 
+    //     token 
+    //         ? "btn btn-success btn-lg text-white mt-2 pe-2" 
+    //         : "hide-button text-white mt-2 pe-2 display-none";
+
+    const handleCheckout = async () => {
+        if (!token) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'No has iniciado sesión',
+                text: 'Necesitas iniciar sesión para comprar',
+                confirmButtonText: 'Iniciar Sesión',
+                showCancelButton: true,
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login');
+                }
+            });
+            return;
+        }
+
+        try {
+            const response = await axios.post(
+                'http://localhost:5000/api/checkouts', 
+                { cart }, 
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, 
+                    },
+                }
+            );
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Checkout Exitoso',
+                text: response.data.message,
+                confirmButtonText: 'OK',
+            }).then(() => {
+                navigate('/'); 
+            });
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Checkout Falló',
+                text:   error.response?.data?.error || 'Ocurrió un error. Intente nuevamente' ,
+                confirmButtonText: 'OK',
+            });
+        }
+    };
 
     const handleQuantityChange = (pizzaId, delta) => {
         const pizza = cart.find((item) => item.id === pizzaId);
@@ -65,7 +119,9 @@ const Cart = () => {
             </div>
             <div className="d-flex justify-content-between button-container">
                         <button onClick={() => navigate('/')} className="btn btn-dark btn-lg"> Seguir Comprando </button>
-                        <button className={setButtonClass(token)}>Ir a Pagar</button>
+                        {/* <button className={setButtonClass(token)}>Ir a Pagar</button> */}
+                        <button onClick={handleCheckout} className="btn btn-success btn-lg text-white mt-2 pe-2"> Ir a Pagar </button>
+
             </div>
             </>
         )}

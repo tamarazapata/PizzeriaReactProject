@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext';
 import { UserContext } from "../../context/UserContext";
+import Swal from "sweetalert2";
 
 const NavBarMenu = () => {
     const { token, logout } = useContext(UserContext);
@@ -13,6 +14,12 @@ const NavBarMenu = () => {
     const total = getTotal();
     const handleLogout = () => {
         logout();
+        Swal.fire({
+            icon: 'success',
+            title: 'Has cerrado sesión',
+            text: 'Se ha cerrado sesión de forma exitosa',
+            confirmButtonText: 'OK',
+        });
     };
     return (
         <Navbar expand="lg" bg="dark" variant="dark" className="navbar-custom">

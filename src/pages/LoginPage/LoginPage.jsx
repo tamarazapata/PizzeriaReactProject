@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import Swal from "sweetalert2";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom"; 
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const LoginForm = () => {
     });
     
     const { login } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,6 +23,7 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
         if (formData.email.trim() === "" || formData.pass.trim() === "") {
             Swal.fire({
                 title: "Error!",
@@ -28,25 +31,30 @@ const LoginForm = () => {
                 icon: "error",
                 confirmButtonText: "OK",
             });
-                        return;
+            return;
         }
-        try {
-            await login(formData.email, formData.pass);
+    
+        const result = await login(formData.email, formData.pass); 
+    
+        if (result.success) {
             Swal.fire({
                 title: "Éxito!",
                 text: "Has iniciado sesión correctamente.",
                 icon: "success",
-                confirmButtonText: "OK",
+                confirmButtonText: "🍕Ir al Home🍕",
+            }).then(() => {
+                navigate("/"); // Redirige al home al presionar "OK"
             });
-        } catch (error) {
+        } else {
             Swal.fire({
                 title: "Error!",
-                text: "Hubo un problema al iniciar sesión. Por favor, verifica tus credenciales.",
+                text: result.message || "Hubo un problema al iniciar sesión. Por favor, verifica tus credenciales.",
                 icon: "error",
                 confirmButtonText: "OK",
             });
         }
     };
+    
 
     return (
         <form onSubmit={handleSubmit} className="login-form container mt-5 p-4 border rounded">

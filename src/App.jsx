@@ -37,7 +37,7 @@ function App() {
               Además, si el token es true, los usuarios no deberían poder acceder a la página de
               login y register (los puedes redirigir al home) */}
               {/* <Route path="/profile" element={token && token.state ? <Profile /> :  <Navigate to="/login" />}/> */}
-              <Route path="/profile" element={<PrivateRoute component={<Profile />} />} />
+              <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
 
           </Routes> 
           <Footer />
@@ -48,9 +48,9 @@ function App() {
   );
 }
 
-function PrivateRoute({ children  }) {
+function PrivateRoute({ children }) {
   const { token } = useContext(UserContext);
-  return token ? children  : <Navigate to="/login" />;
+  return token ? children : <Navigate to="/login" />;
 }
 PrivateRoute.propTypes = {
   children: PropTypes.node.isRequired,
